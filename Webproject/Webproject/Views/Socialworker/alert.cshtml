@@ -1,0 +1,14 @@
+﻿@{
+    var ID = Session["ID"];
+    var Context = Session["Socialworker_centent"];
+    var Time = Session["Student_requestTime"];
+    var SID = Session["Socialworker_Id"];
+
+    Session.Remove("ID");
+    Session.Remove("Socialworker_centent");
+    Session.Remove("Student_requestTime");
+    Session.Remove("Socialworker_Id");
+    Session.Remove("userID");
+}
+
+<meta http-equiv="refresh" content="0; url=https://fcf99cbfb163.ngrok.io/long?id=@ID&context=@Context&time=@Time&sid=@SID">

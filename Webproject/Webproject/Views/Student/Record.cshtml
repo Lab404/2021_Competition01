@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Record";
+}
+
+@{
+    if (Session["userID"] == null)
+    {
+        Session.Add("userID", "");
+        Session["userID"] = @Request.QueryString["uid"];
+    }
+    else
+    {
+       <p>123</p>
+    }
+}
+
+<h2>Create</h2>
+<form action="@Url.Action("Record")" method="post">
+    <input type="hidden" name="name" id="name" class="form-control" value="@Request.QueryString["name"]" readonly><br>
+    類別:<br><input type="radio" name="AssistClass" id="AssistClass" value="0">感情
+    <input type="radio" name="AssistClass" id="AssistClass" value="1" />工作
+    <input type="radio" name="AssistClass" id="AssistClass" value="2" />新生<br>
+    <textarea name="content" id="content"></textarea>
+    <input type="submit" value="送出">
+</form>

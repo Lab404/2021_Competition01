@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{
+    if (Session["check"] != null)
+    {
+        <meta http-equiv="refresh" content="0; url= https://54d61a5fb0e8.ngrok.io/Student/SearchScale">// LineLogin_Callback_url+/Student/SearchScale
+        //Session.Remove("check");
+    }
+
+    if (Session["checkRecord"] != null)
+    {
+        <meta http-equiv="refresh" content="0; url= https://fcf99cbfb163.ngrok.io/refun?uid=@Session["userID"]">// LineBot(Python)_Webhook+/refun?uid=@Session["userID"]
+        Session.Remove("checkRecord");
+        Session.Remove("userID");
+    }
+}

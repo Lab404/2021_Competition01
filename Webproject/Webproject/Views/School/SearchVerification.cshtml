@@ -1,0 +1,30 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "SearchVerification";
+}
+
+<h2>SearchVerification</h2>
+<table class="table">
+    <tr>
+        <th>
+            認證碼
+        </th>
+        <th>
+            社工姓名
+        </th>
+    </tr>
+    @foreach (DataRow row in Model.Rows)
+    {
+        <tr>
+            <td>
+                @row["Verification"]
+            </td>
+            <td>
+                @row["Socialworker_name"]
+            </td>
+
+
+        </tr>
+    }
+</table>

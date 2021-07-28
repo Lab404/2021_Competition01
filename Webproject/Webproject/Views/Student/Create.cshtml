@@ -1,0 +1,32 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<form action="@Url.Action("Create")" method="post">
+    姓名:<input type="text" name="name" id="name" class="form-control" value="@ViewBag.name" readonly><br>
+    Token:<input type="text" name="token" id="token" class="form-control" value="@ViewBag.token" readonly><br>
+    Email:<input type="text" name="email" id="email" class="form-control" value="@ViewBag.email" readonly><br>
+    userID:<input type="text" name="userid" id="userid" class="form-control" value="@ViewBag.userid" readonly><br>
+    性別:<br><input type="radio" name="gender" value="0">男
+    <input type="radio" name="gender" value="1">女<br>
+    生日:<input type="text" name="birthday" id="birthday" class="form-control"><br>
+    LINE:<input type="text" name="LineID" id="LineID" class="form-control"><br>
+    <hr width="100%"><!--以下選填-->
+    監護人姓名:<input type="text" name="guardian_name" id="guardian_name" class="form-control"><br>
+    監護人電話:<input type="text" name="guardian_phnumber" id="guardian_phnumber" class="form-control"><br>
+    老師:<input type="text" name="teacher" id="teacher" class="form-control"><br>
+    班級:<input type="text" name="sclass" id="sclass" class="form-control"><br>
+    學號:<input type="text" name="IDNumber" id="IDNumber" class="form-control"><br>
+    驗證碼:<input type="text" name="verification" id="verification" class="form-control"><br>
+    學校:<br>
+    <select name="SchoolName" id="SchoolName" class="form-control">
+        @foreach (DataRow row in Model.Rows)
+        {
+            <option>@row["School_name"]</option>
+        }
+    </select><br>
+    <input type="submit" value="送出">
+</form>

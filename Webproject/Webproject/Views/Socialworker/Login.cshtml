@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<form action="@Url.Action("Login")" method="post">
+    帳號:<input type="text" name="account" id="account" class="form-control">
+    密碼:<input type="password" name="password" id="password" class="form-control">
+    <input type="submit" value="送出">
+</form>

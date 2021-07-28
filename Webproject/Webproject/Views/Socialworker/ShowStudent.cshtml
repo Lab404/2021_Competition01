@@ -1,0 +1,50 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "ShowStudent";
+}
+
+<h2>ShowStudent</h2>
+<table class="table">
+    <tr>
+        <th>
+            姓名
+        </th>
+        <th>
+            性別
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            IDNumber
+        </th>
+
+    </tr>
+    @foreach (DataRow row in Model.Rows)
+    {
+        <tr>
+            <td>
+                @row["Student_name"]
+            </td>
+            @if ((int)row["Student_gender"] == 0)
+            {
+                <td>男</td>
+            }
+            else
+            {
+                <td>女</td>
+            }
+            <td>
+                @row["Student_Email"]
+            </td>
+            <td>
+                @row["Student_IDNumber"]
+            </td>
+              <td>
+                @Html.ActionLink("查看學生紀錄", "ShowRecord", new { id = row["Student_Id"] })
+            </td>
+        </tr>
+    }
+</table>
+

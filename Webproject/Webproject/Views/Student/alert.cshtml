@@ -1,0 +1,16 @@
+﻿@{
+    if (Session["shortbee"] != null)
+    {
+        var uid = Session["userID"];
+        Session.Remove("userID");
+        Session.Remove("shortbee");
+        <meta http-equiv="refresh" content="0; url=https://fcf99cbfb163.ngrok.io/shortbeek?uid=@uid&short=1">// LineBot(Python)_Webhook+/shortbeek?uid=@uid&short=1
+    }
+    else
+    {
+        var uid = Session["userID"];
+        Session.Remove("userID");
+        Session.Remove("shortbee");
+        <meta http-equiv="refresh" content="0; url=https://fcf99cbfb163.ngrok.io/shortbeek?uid=@uid&short=0">// LineBot(Python)_Webhook+/shortbeek?uid=@uid&short=0
+    }
+}

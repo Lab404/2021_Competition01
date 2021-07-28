@@ -1,0 +1,50 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "SocialworkerManagement";
+}
+
+<h2>SocialworkerManagement</h2>
+<table class="table">
+    <tr>
+        <th>
+            姓名
+        </th>
+        <th>
+            性別
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            IDNumber
+        </th>
+
+    </tr>
+    @foreach (DataRow row in Model.Rows)
+    {
+        <tr>
+            <td>
+                @row["Socialworker_name"]
+            </td>
+            @if ((int)row["Socialworker_gender"] == 0)
+            {
+                <td>男</td>
+            }
+            else
+            {
+                <td>女</td>
+            }
+            <td>
+                @row["Socialworker_Email"]
+            </td>
+            <td>
+                @row["Socialworker_IDnumber"]
+            </td>
+            <td>
+                @Html.ActionLink("查看負責學生", "ShowStudent", new { id = row["Socialworker_Id"] })
+            </td>
+        </tr>
+    }
+</table>
+

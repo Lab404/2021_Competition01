@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form action="@Url.Action("Edit")" method="post">
+    編號:<input type="text" name="id" id="id" class="form-control" value="@ViewBag.Case" readonly><br>
+    姓名:<input type="text" name="name" id="name" class="form-control" value="@ViewBag.name" readonly><br>
+    內容:<br><textarea name="scontent" id="scontent"  readonly>@ViewBag.centent</textarea><br>
+    回覆:<br><textarea name="Socialworker_centent" id="Socialworker_centent"></textarea>
+    <input type="submit" value="送出">
+</form>

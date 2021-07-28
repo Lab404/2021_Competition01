@@ -1,0 +1,78 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "SearchRecord";
+}
+
+<h2>SeachRecord</h2>
+<table class="table">
+    <tr>
+        <th>
+            類別
+        </th>
+        <th>
+            內容
+        </th>
+        <th>
+            填寫時間
+        </th>
+        <th>
+            回覆內容
+        </th>
+        <th>
+            回覆時間
+        </th>
+        <th>
+            回覆人
+        </th>
+    </tr>
+    @foreach (DataRow row in Model.Rows)
+    {
+    <tr>
+        @if ((int)row["AssistClass"] == 0)
+        {
+        <td>感情</td>
+        }
+        @if ((int)row["AssistClass"] == 1)
+        {
+        <td>工作</td>
+        }
+        @if ((int)row["AssistClass"] == 2)
+        {
+        <td>新生</td>
+        }
+        <td>
+            @row["Student_content"]
+        </td>
+        <td>
+            @row["Student_requestTime"]
+        </td>
+
+        @{
+        try
+        {
+        if ((string)row["Socialworker_content"] != null)
+        {
+        <td>
+            @row["Socialworker_content"]
+        </td>
+        <td>
+            @row["Socialworker_requestTime"]
+        </td>
+        <td>
+            @row["Socialworker_name"]
+        </td>
+
+        }
+        }
+        catch (Exception e)
+        {
+        <td></td>
+        <td></td>
+        <td></td>
+        }
+
+        }
+    </tr>
+    }
+</table>

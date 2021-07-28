@@ -1,0 +1,94 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "SearchScale";
+}
+
+@{
+    var uid = Session["userID"];
+}
+
+@{
+    var sc = 0;
+    var date = "";
+    var webhookURL = "https://fcf99cbfb163.ngrok.io";        // LineBot(Python)_Webhook
+    object test = "";
+}
+
+<h2>SeachScale</h2>
+<table class="table">
+    <tr>
+        <th>
+            姓名
+        </th>
+        <th>
+            憂鬱症判別
+        </th>
+        <th>
+            測試時間
+        </th>
+
+    </tr>
+
+    @foreach (DataRow row2 in Model.Rows)
+    {
+        test = row2["Scale_total"];
+        sc = Convert.ToInt32(test);
+        date = row2["RequestTime"].ToString();
+    }
+
+
+    @if (Session["check"] != null && Session["checkLINE"] != null)
+    {
+        Session.Remove("check");
+        Session.Remove("checkLINE");
+        Session.Remove("userID");
+        if (sc <= 0 && sc <= 14)
+        {
+            <meta http-equiv="refresh" content="0; url= @webhookURL/tk?uid=@uid&b=3&c=@sc&d=無憂鬱&e=@date">
+        }
+        else if (sc >= 15 && sc <= 25)
+        {
+            <meta http-equiv="refresh" content="0; url= @webhookURL/tk?uid=@uid&b=3&c=@sc&d=輕度憂鬱症&e=@date">
+        }
+        else if (sc >= 26 && sc <= 44)
+        {
+            <meta http-equiv="refresh" content="0; url= @webhookURL/tk?uid=@uid&b=3&c=@sc&d=中度憂鬱症&e=@date">
+        }
+        else
+        {
+            <meta http-equiv="refresh" content="0; url= @webhookURL/tk?uid=@uid&b=3&c=@sc&d=重度憂鬱症&e=@date">
+        }
+    }
+
+    @foreach (DataRow row in Model.Rows)
+    {
+        <tr>
+            <td>
+                @ViewBag.Student_name
+            </td>
+            @if ((int)row["Scale_Total"] <= 14)
+            {
+                <td>無憂鬱</td>
+            }
+            else if ((int)row["Scale_Total"] >= 15 && (int)row["Scale_Total"] <= 25)
+            {
+                <td>輕度憂鬱症</td>
+            }
+            else if ((int)row["Scale_Total"] >= 26 && (int)row["Scale_Total"] <= 44)
+            {
+                <td>中度憂鬱症</td>
+            }
+            else
+            {
+                <td>重度憂鬱症</td>
+            }
+
+            <td>
+                @row["RequestTime"]
+            </td>
+
+
+        </tr>
+    }
+</table>

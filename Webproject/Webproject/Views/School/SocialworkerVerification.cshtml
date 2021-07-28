@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SocialworkerVerification";
+}
+
+<h2>SocialworkerVerification</h2>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<h2>Index</h2>
+@ViewBag.verification
+<form action="@Url.Action("SocialworkerVerification")" method="post" id="mform">
+    <input type="text" value="" id="demo" name="verification" readonly>
+    <input type="button" id="btn" value="產生社工驗證碼">
+</form>
+<script>
+    function randomusefloor(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    function makerandomletter(max) {
+        var text = "";
+        var possible = "abcdefghijklmnopqrstuvwxyz";
+
+        for (var i = 0; i < max; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    }
+    $("#btn").click(function () {
+        $("#demo").attr("value", makerandomletter(2) + randomusefloor(1, 999999));
+        $("#mform").submit();
+    });
+</script>
